@@ -1,0 +1,52 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.create-form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 1em;
+    grid-auto-rows: auto;
+}
+
+.create-form__footer {
+    grid-column: 2;
+}
+
+.priority-widget {
+    border: none;
+    padding: 0;
+}
+
+.priority-widget input {
+    display: none;
+}
+
+.priority-widget label {
+    margin-right: .5em;
+    cursor: pointer;
+}
+
+.priority-widget>input:checked~label {
+    color: lightgray;
+}
+
+.todo-list {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr auto;
+    grid-gap: 0.2em 1em;
+    grid-auto-rows: auto;
+}
+
+.todo-list--description {
+    grid-column: span 2;
+}
+
+.todo-list--edit {
+    grid-row: span 2;
+}

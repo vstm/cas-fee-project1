@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TODO-App</title>
+    <link rel="stylesheet" href="assets/main.css">
+  </head>
+  <body>
+    <main id="app"></main>
+
+    <script id="todo-list-template" type="text/x-handlebars-template">
+        <a href="new.html">New Todo</a>
+
+        <section class="todo-list">
+          {{#each todos}}
+            <div class="todo-list--due">{{formatDate due "Sometime"}}</div>
+            <div class="todo-list--title">{{title}}</div>
+            <div class="todo-list--priority">{{formatPriority priority "⚡"}}</div>
+            <div class="todo-list--edit">
+                <a href="new.html?edit={{id}}">EDIT</a>
+            </div>            
+            <div class="todo-list--done">
+              <input type="checkbox" {{checkedIf isDone}}> 
+              {{#if isDone }}[ {{done}} ]{{/if}}
+            </div>
+            <div class="todo-list--description">
+              {{description}}
+            </div>
+          {{/each}}
+        </section>
+    </script>
+
+    <script src="assets/handlebars.min.js"></script>
+    <script src="assets/moment.min.js"></script>
+    <script src="assets/main.js"></script>
+    <script>
+      todoListController(document.querySelector("#app"));
+    </script>
+  </body>
+</html>
