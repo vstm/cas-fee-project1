@@ -22,8 +22,8 @@
                 <a href="new.html?edit={{id}}">EDIT</a>
             </div>            
             <div class="todo-list--done">
-              <input type="checkbox" {{checkedIf isDone}}> 
-              {{#if isDone }}[ {{done}} ]{{/if}}
+              <input data-done-checkbox="{{id}}" type="checkbox" {{checkedIf isDone}}>
+              {{#if isDone }}[ {{formatDate done}} ]{{/if}}
             </div>
             <div class="todo-list--description">
               {{description}}

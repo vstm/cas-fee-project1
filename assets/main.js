@@ -1,5 +1,5 @@
 Handlebars.registerHelper("checkedIf", function(fieldValue, value) {
-    return (value === undefined ? fieldValue : (fieldValue === value)) ? "checked" : "";
+    return (value === undefined || typeof value === "object" ? fieldValue : (fieldValue === value)) ? "checked" : "";
 });
 
 Handlebars.registerHelper("formatDate", function(datetime, nullValue) {
@@ -61,7 +61,6 @@ class Todo {
     }
 
     toJSON() {
-        console.log(this);
         return {
             id: this.id,
             created: this.created.toISOString(),
@@ -101,6 +100,31 @@ function todoListController(appNode)
 
     appNode.innerHTML = template({
         'todos': loadTodos(),
+    });
+
+    appNode.addEventListener('click', function(event) {
+        if (!event.target.matches('[data-done-checkbox]')) {
+            return;
+        }
+
+        const id = Number(event.target.dataset.doneCheckbox);
+
+        const todos = loadTodos();
+
+        let updated = false;
+        for (let todo of todos) {
+            if (todo.id === id) {
+                todo.isDone = event.target.checked;
+                updated = updateTodo(todo);
+                break;
+            }
+        }
+
+        if (updated) {
+            appNode.innerHTML = template({
+                'todos': todos,
+            });
+        }
     });
 }
 
@@ -193,7 +217,6 @@ function getTodo(todoId) {
 
 function addTodo(todo) {
     const todos = loadTodos();
-    console.log(todos);
 
     todos.push(todo);
 
