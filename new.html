@@ -48,10 +48,15 @@
 
   <script src="assets/handlebars.min.js"></script>
   <script src="assets/moment.min.js"></script>
-  <script src="assets/main.js"></script>
+  <script src="assets/handlebar-utils.js"></script>
+  <script src="assets/Todo.js"></script>
+  <script src="assets/TodoStore.js"></script>
+  <script src="assets/BaseController.js"></script>
+  <script src="assets/TodoDetailController.js"></script>
   <script>
+    const controller = new TodoDetailController(document.querySelector("#app"), new TodoStore());
     const urlParams = new URLSearchParams(window.location.search);
-    todoCreateController(document.querySelector("#app"), urlParams);
+    controller.editAction(urlParams);
   </script>
 </body>
 
