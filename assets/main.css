@@ -51,3 +51,32 @@ body {
 .todo-list--edit {
     grid-row: span 2;
 }
+
+.view-settings {
+    display: flex;
+    justify-content: space-between;
+}
+
+.view-settings fieldset {
+    border: none;
+    padding: 0;
+}
+
+.view-settings fieldset label {
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.view-settings fieldset label {
+    border: 1px solid black;
+    padding: .3em;
+    display: inline-block;
+}
+
+.view-settings fieldset input:checked + label {
+    background-color: lightskyblue;
+}
+
+.view-settings fieldset input {
+    display: none;
+}

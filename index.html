@@ -18,10 +18,14 @@
           {{#with viewSettings}}
           <fieldset>
             {{#each sortOptions}}
-              <label>{{label}} <input type="radio" name="sorting" value="{{@key}}" {{checkedIf ../sorting @key }}></label>
+              <input type="radio" id="sorting-{{@key}}" name="sorting" value="{{@key}}" {{checkedIf ../sorting @key }}>
+              <label for="sorting-{{@key}}">{{label}} </label>
             {{/each}}
           </fieldset>
-          <label>Show finished<input type="checkbox" name="showFinished" value="1" {{checkedIf showFinished}}></label>
+          <fieldset>
+              <input type="checkbox" id="showFinished" name="showFinished" value="1" {{checkedIf showFinished}}>
+              <label for="showFinished">Show finished</label>
+          </fieldset>
           {{/with}}
         </section>
 
