@@ -30,7 +30,7 @@ class TodoDetailController extends BaseController {
         const data = new FormData(event.target);
         for (let kvPair of data) {
             if (kvPair[0] === "due") {
-                todoObject[kvPair[0]] = new Date(kvPair[1]);
+                todoObject[kvPair[0]] = kvPair[1] && new Date(kvPair[1]);
                 continue;
             }
             todoObject[kvPair[0]] = kvPair[1];

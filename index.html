@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>TODO-App</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/main.css">
   </head>
   <body>
@@ -17,7 +18,7 @@
           {{#each todos}}
             <div class="todo-list--due">{{formatDate due "Sometime"}}</div>
             <div class="todo-list--title">{{title}}</div>
-            <div class="todo-list--priority">{{formatPriority priority "⚡"}}</div>
+            <div class="todo-list--priority">{{{formatPriority priority "<i class=\"material-icons\">flash_on</i>"}}}</div>
             <div class="todo-list--edit">
                 <a href="new.html?edit={{id}}">EDIT</a>
             </div>            

@@ -30,6 +30,7 @@ body {
 .priority-widget label {
     margin-right: .5em;
     cursor: pointer;
+    color: black;
 }
 
 .priority-widget>input:checked~label {
