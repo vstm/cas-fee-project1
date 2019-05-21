@@ -14,6 +14,17 @@
     <script id="todo-list-template" type="text/x-handlebars-template">
         <a href="new.html">New Todo</a>
 
+        <section class="view-settings">
+          {{#with viewSettings}}
+          <fieldset>
+            {{#each sortOptions}}
+              <label>{{label}} <input type="radio" name="sorting" value="{{@key}}" {{checkedIf ../sorting @key }}></label>
+            {{/each}}
+          </fieldset>
+          <label>Show finished<input type="checkbox" name="showFinished" value="1" {{checkedIf showFinished}}></label>
+          {{/with}}
+        </section>
+
         <section class="todo-list">
           {{#each todos}}
             <div class="todo-list--due">{{formatDate due "Sometime"}}</div>
