@@ -13,5 +13,10 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        "no-console": "off",
+    },
+    "globals": {
+        "Handlebars": "readonly",
+        "moment": "readonly"
     }
 };
