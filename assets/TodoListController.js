@@ -95,19 +95,13 @@ class TodoListController extends BaseController {
 
     const id = Number(event.target.dataset.doneCheckbox);
 
-    const todos = this.store.loadTodos();
-
-    let updated = false;
-    for (let todo of todos) {
-      if (todo.id === id) {
-        todo.isDone = event.target.checked;
-        updated = this.store.updateTodo(todo);
-        break;
-      }
-    }
+    const updated = this.store.patchTodo(id, (todo) => {
+      todo.isDone = event.target.checked;
+      return true;
+    })
 
     if (updated) {
-      this.renderView(todos);
+      this.renderView();
     }
   }
 

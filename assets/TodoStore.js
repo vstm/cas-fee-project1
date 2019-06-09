@@ -72,4 +72,27 @@ class TodoStore {
 
     return updated;
   }
+
+  /**
+   * @param {Number} id
+   * @param {function(Todo):boolean} patchFn
+   */
+  patchTodo(id, patchFn) {
+    const todos = this.loadTodos();
+
+    let updated = false;
+    for (let index in todos) {
+      if (todos[index].id === id) {
+        patchFn(todos[index]);
+        updated = true;
+        break;
+      }
+    }
+
+    if (updated) {
+      this.storeTodos(todos);
+    }
+
+    return updated;
+  }
 }
