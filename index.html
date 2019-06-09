@@ -51,13 +51,14 @@
     <script src="assets/handlebars.min.js"></script>
     <script src="assets/moment.min.js"></script>
     <script src="assets/handlebar-utils.js"></script>
-    <script src="assets/Todo.js"></script>
-    <script src="assets/TodoStore.js"></script>
-    <script src="assets/BaseController.js"></script>
-    <script src="assets/TodoListController.js"></script>
-    <script>
-      const controller = new TodoListController(document.querySelector("#app"), new TodoStore())
-      controller.listAction();
+    <script type="module">
+      import { TodoListController } from './assets/ui/todo-list-controller.js';
+      import { Bootstrapper } from './assets/bootstrapper.js';
+
+      Bootstrapper.run(() => {
+        const controller = Bootstrapper.bootstrapTodoController(TodoListController, document.querySelector("#app"));
+        controller.listAction();
+      });
     </script>
   </body>
 </html>

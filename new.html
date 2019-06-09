@@ -50,14 +50,15 @@
   <script src="assets/handlebars.min.js"></script>
   <script src="assets/moment.min.js"></script>
   <script src="assets/handlebar-utils.js"></script>
-  <script src="assets/Todo.js"></script>
-  <script src="assets/TodoStore.js"></script>
-  <script src="assets/BaseController.js"></script>
-  <script src="assets/TodoDetailController.js"></script>
-  <script>
-    const controller = new TodoDetailController(document.querySelector("#app"), new TodoStore());
-    const urlParams = new URLSearchParams(window.location.search);
-    controller.editAction(urlParams);
+  <script type="module">
+    import { TodoDetailController } from './assets/ui/todo-detail-controller.js';
+    import { Bootstrapper } from './assets/bootstrapper.js';
+
+    Bootstrapper.run(() => {
+      const controller = Bootstrapper.bootstrapTodoController(TodoDetailController, document.querySelector("#app"));
+      const urlParams = new URLSearchParams(window.location.search);
+      controller.editAction(urlParams);
+    });
   </script>
 </body>
 

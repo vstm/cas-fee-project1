@@ -1,3 +1,5 @@
+import { BaseController } from './base-controller.js';
+
 const SORT_OPTIONS = {
   due: {
     label: 'By finish date',
@@ -31,7 +33,7 @@ const SORT_OPTIONS = {
 const SORT_OPTIONS_DEFAULT = 'due';
 const VIEW_SETTINGS_KEY = 'view-settings';
 
-class TodoListController extends BaseController {
+export class TodoListController extends BaseController {
   constructor(appNode, store) {
     super(appNode);
     this.store = store;

@@ -1,6 +1,8 @@
+import { Todo } from '../bl/todo.js';
+
 const TODO_DATA_KEY = "todo-data";
 
-class TodoStore {
+export class TodoStore {
   loadTodos() {
     const todos = window.localStorage.getItem(TODO_DATA_KEY);
 

@@ -1,4 +1,7 @@
-class TodoDetailController extends BaseController {
+import { BaseController } from './base-controller.js';
+import { Todo } from '../bl/todo.js';
+
+export class TodoDetailController extends BaseController {
 
     constructor(appNode, store) {
         super(appNode);

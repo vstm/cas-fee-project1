@@ -1,4 +1,4 @@
-class BaseController {
+export class BaseController {
   constructor(appNode) {
     if (!appNode) {
       throw new Error("Invalid app node given");

@@ -12,7 +12,7 @@ const parseDate = date => {
     return new Date(parsedDate);
 }
 
-class Todo {
+export class Todo {
     constructor() {
         this.id = Date.now();
         this.created = new Date();
