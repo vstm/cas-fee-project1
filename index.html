@@ -7,16 +7,24 @@
     <title>TODO-App</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/main.css">
+    <link id="style-dark-mode" rel="alternate stylesheet" href="assets/style-dark-mode.css" title="Dark Mode">
   </head>
   <body>
     <main id="app"></main>
 
     <script id="todo-list-template" type="text/x-handlebars-template">
-        <a href="new.html">New Todo</a>
+
+        <header>
+          <h1>Todo APP</h1>
+          <a class="add-button" href="new.html"><i class="material-icons">add_circle</i>New Todo</a>
+        </header>
+
+        
 
         <section class="view-settings">
           {{#with viewSettings}}
           <fieldset>
+            <legend>Sort by</legend>
             {{#each sortOptions}}
               <input type="radio" id="sorting-{{@key}}" name="sorting" value="{{@key}}" {{checkedIf ../sorting @key }}>
               <label for="sorting-{{@key}}">{{label}} </label>
@@ -26,24 +34,35 @@
               <input type="checkbox" id="showFinished" name="showFinished" value="1" {{checkedIf showFinished}}>
               <label for="showFinished">Show finished</label>
           </fieldset>
+
+          {{#if styles}}
+
+          <select name="style">
+            {{#each styles}}
+            <option value="{{id}}">{{title}}</option>
+            {{/each}}
+          </select>
+          {{/if}}
           {{/with}}
         </section>
 
         <section class="todo-list">
           {{#each todos}}
-            <div class="todo-list--due">{{formatDate due "Sometime"}}</div>
-            <div class="todo-list--title">{{title}}</div>
-            <div class="todo-list--priority">{{{formatPriority priority "<i class=\"material-icons\">flash_on</i>"}}}</div>
-            <div class="todo-list--edit">
-                <a href="new.html?edit={{id}}">EDIT</a>
-            </div>            
-            <div class="todo-list--done">
-              <input data-done-checkbox="{{id}}" type="checkbox" {{checkedIf isDone}}>
-              {{#if isDone }}[ {{formatDate done}} ]{{/if}}
-            </div>
-            <div class="todo-list--description">
-              {{description}}
-            </div>
+          <div class="todo-item {{#if isDone}}todo-item--done{{/if}}">
+              <i data-expand-action class="todo-item__expand material-icons">expand_more</i>
+              <i data-expand-action class="todo-item__collapse material-icons">expand_less</i>
+              <input class="todo-item__done-check" data-done-checkbox="{{id}}" type="checkbox" {{checkedIf isDone}} {{#if isDone}}title="Done {{formatDate done}}"{{/if}}>
+              <div class="todo-item__due" {{#if due}}title="{{formatDate due}}"{{/if}}><span class="todo-item__due-label">Due</span> {{#if due }}<time datetime="{{ formatEditDate due }}">{{/if}}{{formatDate due "Sometime"}}{{#if due}}</time>{{/if}}</div>
+              <div class="todo-item__done-date">{{#if isDone }}[ <time datetime="{{ formatEditDate done }}">{{formatDate done}}</time> ]{{/if}}</div>
+              <h2 data-expand-action class="todo-item__title">{{title}}</h2>
+              <div class="todo-item__priority">{{{formatPriority priority "<i class=\"material-icons\">flash_on</i>"}}}</div>
+              <div class="todo-item__description">
+                {{description}}
+              </div>
+              <div class="todo-item__edit">
+                  <a href="new.html?edit={{id}}"><i class="material-icons">edit</i></a>
+              </div>
+          </div>
           {{/each}}
         </section>
     </script>

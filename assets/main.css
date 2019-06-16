@@ -5,6 +5,46 @@ html {
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+main {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 3em 1fr;
+    grid-row-gap: .5em;
+    grid-column-gap: 1em;
+    grid-template-areas:
+        "header header"
+        "sidebar main";
+}
+
+main header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 3px lightgray;
+    padding: 0 1em;
+    background-color: rgb(216, 252, 209);
+}
+
+main header h1 {
+    margin: 0;
+}
+
+main .view-settings {
+    grid-area: sidebar;
+    padding-left: 1em;
+}
+
+main .todo-list, main .main-area {
+    grid-area: main;
+    padding-right: 1em;
+}
+
+.todo-item__priority .material-icons {
+    font-size: 1em;
 }
 
 .create-form {
@@ -33,42 +73,118 @@ body {
     color: black;
 }
 
-.priority-widget>input:checked~label {
+.priority-widget>input:checked ~ label {
     color: lightgray;
 }
 
 .todo-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-item {
+    margin-top: 1em;
+    padding: .5em 1em;
+    box-shadow: 3px 3px 3px lightgray;
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr auto;
-    grid-gap: 0.2em 1em;
+    grid-template-columns: auto auto 10em 4fr 5em auto;
+    grid-gap: 0.1em 1em;
     grid-auto-rows: auto;
+    grid-template-areas:
+        "expand done-check due title priority edit"
+        ". . done-date description description ."
+        ;
 }
 
-.todo-list--description {
-    grid-column: span 2;
+.todo-item:first-child {
+    margin-top: 0;
 }
 
-.todo-list--edit {
-    grid-row: span 2;
+.todo-item__collapse {
+    display: none;
 }
+
+.todo-item--expanded .todo-item__expand {
+    display: none;
+}
+
+.todo-item--expanded .todo-item__collapse {
+    display: inline-block;
+}
+
+.todo-item__expand, .todo-item__collapse {
+    grid-area: expand;
+    align-self: center;
+    cursor: pointer;
+}
+
+.todo-item__done-check {
+    grid-area: done-check;
+    align-self: center;
+}
+
+.todo-item__due {
+    grid-area: due;
+    align-self: center;
+}
+
+.todo-item__due-label {
+    color: #292929;
+}
+
+.todo-item__done-date {
+    align-self: flex-start;
+    grid-area: done-date;
+    display: none;
+}
+
+.todo-item__title {
+    align-self: center;
+    grid-area: title;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0;
+    cursor: pointer;
+}
+
+.todo-item__priority {
+    grid-area: priority;
+    align-self: center;
+}
+
+.todo-item__description {
+    grid-area: description;
+    display: none;
+}
+
+.todo-item__edit {
+    grid-area: edit;
+    align-self: center;
+}
+
+.todo-item--expanded .todo-item__description, 
+.todo-item--expanded .todo-item__done-date {
+    display: inline-block;
+}
+
+/* .todo-item__done-check,
+.todo-item__edit {
+    margin-top: 1em;
+} */
 
 .view-settings {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 .view-settings fieldset {
     border: none;
     padding: 0;
+    display: flex;
+    margin-bottom: 1em;
 }
 
 .view-settings fieldset label {
-    border: 1px solid black;
-    display: inline-block;
-}
-
-.view-settings fieldset label {
-    border: 1px solid black;
     padding: .3em;
     display: inline-block;
 }
@@ -79,4 +195,23 @@ body {
 
 .view-settings fieldset input {
     display: none;
+}
+
+.add-button {
+    display: inline-flex;
+    text-decoration: none;
+    align-items: center;
+    background-color: lightskyblue;
+    border-radius: 2px;
+    padding: .2em .5em;
+    box-shadow: 2px 2px 2px rgb(211, 211, 211);
+}
+
+a.add-button {
+    color: rgb(245, 245, 245);
+}
+
+
+.add-button i {
+    margin-right: .3em;
 }
