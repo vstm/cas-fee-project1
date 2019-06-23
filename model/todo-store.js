@@ -1,4 +1,5 @@
 import Datastore from 'nedb';
+import { Todo } from '../model/todo.js';
 
 export class TodoStore
 {
@@ -10,19 +11,25 @@ export class TodoStore
     }
 
     async getTodos() {
-        return await this.todoDb.find({});
+        return Array.from(await this.todoDb.find({})).map(json => Todo.fromDatabase(json));
     }
 
     async getTodo(id) {
-        return await this.todoDb.findOne({ _id: id });
+        return Todo.fromDatabase(await this.todoDb.findOne({ _id: id }));
     }
 
     async createTodo(newData) {
-        const newTodo = await this.todoDb.insert(newData);
+        const todo = Todo.fromJson(newData);
+        const newTodo = await this.todoDb.insert(todo);
         return newTodo._id;
     }
 
     async updateTodo(id, newData) {
-        await this.todoDb.update({ _id: id }, { $set: newData });
+        const todo = Todo.fromJson(newData);
+        await this.todoDb.update({ _id: id }, { $set: todo });
+    }
+
+    async patchTodo(id, patch) {
+        await this.todoDb.update({ _id: id }, { $set: Todo.transformInput(patch, true) })
     }
 }

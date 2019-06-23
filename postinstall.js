@@ -1,7 +1,7 @@
 // webpack for poor people
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 const nodeModules = path.join(__dirname, 'node_modules')
 const assetsDir = path.join(__dirname, 'assets');
 

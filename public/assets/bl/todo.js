@@ -25,7 +25,7 @@ export class Todo {
 
     static fromJson(todo) {
         const result = new Todo();
-        result.id = Number(todo.id);
+        result.id = todo.id;
         result.created = parseDate(todo.created);
         result.title = todo.title;
         result.description = todo.description;

@@ -8,35 +8,30 @@ export class TodoStoreRest {
     this.baseUrl = baseUrl;
   }
 
-  loadTodos() {
-    return this.httpService
-      .send("GET", this.baseUrl)
+  async loadTodos() {
+    return (await this.httpService.send("GET", this.baseUrl))
       .map(todo => Todo.fromJson(todo));
   }
 
-  removeTodo(id) {
+  async removeTodo() {
     throw new Error("Deleting TODO's not supported yet");
   }
 
-  getTodo(todoId) {
+  async getTodo(todoId) {
     return Todo.fromJson(
-      this.httpService.send("GET", `${this.baseUrl}/${todoId}`)
+      await this.httpService.send("GET", `${this.baseUrl}/${todoId}`)
     );
   }
 
-  addTodo(todo) {
-    this.httpService.send("POST", `${this.baseUrl}`, todo);
+  async addTodo(todo) {
+    await this.httpService.send("POST", `${this.baseUrl}`, todo);
   }
 
-  updateTodo(todo) {
-    this.httpService.send("PUT", `${this.baseUrl}/${todo.id}`, todo);
+  async updateTodo(todo) {
+    await this.httpService.send("PUT", `${this.baseUrl}/${todo.id}`, todo);
   }
 
-  /**
-   * @param {Number} id
-   * @param {function(Todo):boolean} patchFn
-   */
-  patchTodo(id, patchFn) {
-    throw new Error("Pathicng TODO's not supported yet");
+  async setTodoDoneStatus(id, status) {
+    await this.httpService.send('PATCH', `${this.baseUrl}/${id}`, {isDone: status});
   }
 }

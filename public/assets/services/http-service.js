@@ -1,12 +1,12 @@
 
 export class HttpService {
-    send(method, url, data = {}, headers = {}) {
+    async send(method, url, data = {}, headers = {}) {
         const fetchHeaders = new Headers({'Content-Type': 'application/json', ...headers});
 
-        return fetch(url, {
+        return await fetch(url, {
             method: method,
-            headers, fetchHeaders,
-            body: JSON.stringify(data)
+            headers: fetchHeaders,
+            ...(method === 'GET' || method === 'HEAD' ? {} : {body: JSON.stringify(data)})
         }).then(x => x.json()).catch(e => console.error(e));
     }
 }

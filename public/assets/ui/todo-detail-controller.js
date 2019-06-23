@@ -8,12 +8,12 @@ export class TodoDetailController extends BaseController {
         this.store = store;
     }
 
-    editAction(params) {
+    async editAction(params) {
         let todo;
         let editMode = false;
     
         if (params.get('edit')) {
-            todo = this.store.getTodo(Number(params.get('edit')));
+            todo = await this.store.getTodo(params.get('edit'));
             editMode = true;
         } else {
             todo = new Todo();
@@ -26,7 +26,7 @@ export class TodoDetailController extends BaseController {
         this.appNode.querySelector('form').addEventListener('submit', event => this._formSubmitHandler(event, editMode, todo));
     }
 
-    _formSubmitHandler(event, editMode, todoObject) {
+    async _formSubmitHandler(event, editMode, todoObject) {
         event.preventDefault();
     
         // let todoObject = editMode ? todo : new Todo();
@@ -40,9 +40,9 @@ export class TodoDetailController extends BaseController {
         }
 
         if (!editMode) {
-            this.store.addTodo(todoObject);
+            await this.store.addTodo(todoObject);
         } else {
-            this.store.updateTodo(todoObject);
+            await this.store.updateTodo(todoObject);
         }
         
         window.location = 'index.html';

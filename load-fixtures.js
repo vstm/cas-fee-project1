@@ -1,6 +1,8 @@
 import Datastore from 'nedb-promise';
 import path from 'path';
 
+import { Todo } from './model/todo.js';
+
 const createFutureDate = (daysInTheFuture) => {
     const DAY_IN_MILLI_SECONDS = 24 * 60 * 60 * 1000;
     return new Date(Date.now() + daysInTheFuture * DAY_IN_MILLI_SECONDS);
@@ -43,5 +45,5 @@ const fixtures = [
 const db = new Datastore({filename: path.join(__dirname, 'test.db'), autoload: true});
 
 fixtures.forEach(async (fixture) => {
-    await db.insert(fixture);
+    await db.insert(Todo.fromJson(fixture));
 });

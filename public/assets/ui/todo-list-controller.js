@@ -93,12 +93,12 @@ export class TodoListController extends BaseController {
     });
   }
 
-  renderView(todos) {
+  async renderView() {
     const template = this.loadTemplate("todo-list-template");
 
     this.appNode.innerHTML = template({
       viewSettings: {...this.viewSettings, sortOptions: SORT_OPTIONS, styles: this.styles},
-      todos: this._applyViewSettings(todos || this.store.loadTodos())
+      todos: this._applyViewSettings(await this.store.loadTodos())
     });
   }
 
@@ -114,21 +114,12 @@ export class TodoListController extends BaseController {
     return result.filter(todo => !todo.isDone);
   }
 
-  _doneClickHandler(event) {
-    const id = Number(event.target.dataset.doneCheckbox);
-
-    const updated = this.store.patchTodo(id, (todo) => {
-      todo.isDone = event.target.checked;
-      return true;
-    })
-
-    if (updated) {
-      this.renderView();
-    }
+  async _doneClickHandler(event) {
+    await this.store.setTodoDoneStatus(event.target.dataset.doneCheckbox, event.target.checked);
+    this.renderView();
   }
 
   _collapseClickHandle(event) {
-    console.log(event);
     const todoItemElement = event.target.closest('.todo-item') ;
 
     if (!todoItemElement) {

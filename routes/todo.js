@@ -15,6 +15,7 @@ export const todoRoutes = controller => {
 
   router.get('/:id', asyncRoute(controller.getTodo.bind(controller)));
   router.put('/:id', asyncRoute(controller.updateTodo.bind(controller)));
+  router.patch('/:id', asyncRoute(controller.patchTodo.bind(controller)));
 
   return router;
 };

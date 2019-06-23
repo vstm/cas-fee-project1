@@ -1,4 +1,3 @@
-import { TodoStore } from './dl/todo-store.js';
 import { TodoStoreRest } from './dl/todo-store-rest.js';
 import { HttpService } from './services/http-service.js';
 

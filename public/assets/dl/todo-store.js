@@ -75,6 +75,11 @@ export class TodoStore {
     return updated;
   }
 
+  setTodoDoneStatus(id, status) {
+    this.patchTodo(id, (todo) => {
+      todo.done = status;
+    });
+  }
   /**
    * @param {Number} id
    * @param {function(Todo):boolean} patchFn
