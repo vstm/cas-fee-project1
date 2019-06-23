@@ -10,8 +10,12 @@ export class TodoStore
         this.todoDb = todoDb;
     }
 
-    async getTodos() {
-        return Array.from(await this.todoDb.find({})).map(json => Todo.fromDatabase(json));
+    async getTodos(sortBy = "due", showFinished = false) {
+        return Array.from(await this.todoDb
+                .cfind(showFinished ? {} : { $where: function() { return this.done === null} })
+                .sort({[sortBy]: -1})
+                .exec()
+            ).map(json => Todo.fromDatabase(json));
     }
 
     async getTodo(id) {

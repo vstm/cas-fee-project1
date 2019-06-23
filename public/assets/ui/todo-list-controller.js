@@ -3,30 +3,12 @@ import { BaseController } from './base-controller.js';
 const SORT_OPTIONS = {
   due: {
     label: 'Finish date',
-    sort(a, b) {
-      // todos without due date have lower prio
-      if (a.due === null && b.due === null) {
-        return 0;
-      } else if(a.due === null) {
-        return 1;
-      } else if(b.due === null) {
-        return -1;
-      }
-
-      return a.due - b.due; // sort asc by due date -> closest first
-    }
   },
   created: {
     label: 'Created date',
-    sort(a, b) {
-      return a.created - b.created; // sort asc be created date -> newest first
-    }
   },
   priority: {
     label: 'Priority',
-    sort(a, b) {
-      return b.priority - a.priority; // sort desc by prio -> highest first
-    }
   },
 };
 
@@ -96,22 +78,12 @@ export class TodoListController extends BaseController {
   async renderView() {
     const template = this.loadTemplate("todo-list-template");
 
+    const sorting = SORT_OPTIONS.hasOwnProperty(this.viewSettings.sorting) ? this.viewSettings.sorting : SORT_OPTIONS_DEFAULT;
+
     this.appNode.innerHTML = template({
       viewSettings: {...this.viewSettings, sortOptions: SORT_OPTIONS, styles: this.styles},
-      todos: this._applyViewSettings(await this.store.loadTodos())
+      todos: await this.store.loadTodos(sorting, this.viewSettings.showFinished)
     });
-  }
-
-  _applyViewSettings(todos) {
-    const sortOption = SORT_OPTIONS[this.viewSettings.sorting] || SORT_OPTIONS[SORT_OPTIONS_DEFAULT];
-
-    const result = todos.sort(sortOption.sort);
-
-    if (this.viewSettings.showFinished) {
-      return result;
-    }
-
-    return result.filter(todo => !todo.isDone);
   }
 
   async _doneClickHandler(event) {

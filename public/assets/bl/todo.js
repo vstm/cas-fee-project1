@@ -14,7 +14,7 @@ const parseDate = date => {
 
 export class Todo {
     constructor() {
-        this.id = Date.now();
+        this.id = undefined;
         this.created = new Date();
         this.title = '';
         this.description = '';

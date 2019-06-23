@@ -8,8 +8,13 @@ export class TodoStoreRest {
     this.baseUrl = baseUrl;
   }
 
-  async loadTodos() {
-    return (await this.httpService.send("GET", this.baseUrl))
+  _buildQs(options) {
+    return Object.entries(options).map(([key, value]) => encodeURIComponent(key) + '=' + encodeURIComponent(value)).join('&');
+  }
+
+  async loadTodos(sort = 'due', showFinished) {
+    const qs = this._buildQs({ sort, showFinished: showFinished ? 'true' : 'false' });
+    return (await this.httpService.send("GET", this.baseUrl + '?' + qs))
       .map(todo => Todo.fromJson(todo));
   }
 

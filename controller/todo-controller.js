@@ -1,6 +1,8 @@
 import { TodoStore } from '../model/todo-store.js';
 import { ModelTransformException } from '../exception/model-transform-exception.js';
 
+const ALLOWED_SORT_VALUES = ['due', 'created', 'priority'];
+
 export class TodoController
 {
   /**
@@ -12,7 +14,15 @@ export class TodoController
   }
 
   async getTodos(req, res) {
-    res.json(await this.todoStore.getTodos());
+    const showFinished = req.query.showFinished === 'true';
+    const sort = String(req.query.sort);
+    
+    if (!ALLOWED_SORT_VALUES.includes(sort.toLowerCase())) {
+      res.status(400).json({query: 'sort', error: `sort string must be one of ${ALLOWED_SORT_VALUES.join(', ')}`});
+      return;
+    }
+    
+    res.json(await this.todoStore.getTodos(sort || null, showFinished));
   }
 
   async getTodo(req, res) {
