@@ -1,0 +1,7 @@
+body {
+    --color-background: #292929;
+    --color-text: #ffffffdc;
+    --color-header-background: rgb(11, 66, 0);
+    --color-prio-selected: var(--color-text);
+    --color-prio-unselected: rgb(75, 75, 75);
+}

@@ -8,6 +8,7 @@
   <title>Create new TODO - TODO-App</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="assets/main.css">
+  <link id="style-dark-mode" rel="alternate stylesheet" href="assets/style-dark-mode.css" title="Dark Mode">
 </head>
 
 <body>
@@ -22,33 +23,35 @@
     <section class="main-area">
       <h1>{{#if editMode}}Edit Todo{{else}}Create new Todo{{/if}}</h1>
       <form>
-        {{#with todo}}
-        <section class="create-form">
-          <label for="title">Title</label>
-          <input id="title" type="text" name="title" value="{{title}}" required>
-
-          <label for="description">Description</label>
-          <textarea id="description" name="description">{{description}}</textarea>
-
-          <label for="priority">Priority</label>
-          <fieldset id="priority" class="priority-widget">
-              <label for="priority-widget-1"><i class="material-icons">flash_on</i></label><input id="priority-widget-1" type="radio" name="priority" value="1" {{checkedIf priority 1}}>
-              <label for="priority-widget-2"><i class="material-icons">flash_on</i></label><input id="priority-widget-2" type="radio" name="priority" value="2" {{checkedIf priority 2}}>
-              <label for="priority-widget-3"><i class="material-icons">flash_on</i></label><input id="priority-widget-3" type="radio" name="priority" value="3" {{checkedIf priority 3}}>
-              <label for="priority-widget-4"><i class="material-icons">flash_on</i></label><input id="priority-widget-4" type="radio" name="priority" value="4" {{checkedIf priority 4}}>
-              <label for="priority-widget-5"><i class="material-icons">flash_on</i></label><input id="priority-widget-5" type="radio" name="priority" value="5" {{checkedIf priority 5}}>
-          </fieldset>
-          
-
-          <label for="due">Finish until</label>
-          <input id="due" type="date" name="due" value="{{formatEditDate due}}">
-
-          <footer class="create-form__footer">
-            <input type="submit" value="{{#if ../editMode}}Update{{else}}Create{{/if}}">
-            <a href="index.html">Cancel</a>
-          </footer>        
-        </section>
-        {{/with}}
+        <div class="create-container">
+            {{#with todo}}
+            <section class="create-form">
+              <label for="title">Title</label>
+              <input id="title" type="text" name="title" value="{{title}}" required>
+    
+              <label for="description">Description</label>
+              <textarea id="description" name="description">{{description}}</textarea>
+    
+              <label for="priority">Priority</label>
+              <fieldset id="priority" class="priority-widget">
+                  <label for="priority-widget-1"><i class="material-icons">flash_on</i></label><input id="priority-widget-1" type="radio" name="priority" value="1" {{checkedIf priority 1}}>
+                  <label for="priority-widget-2"><i class="material-icons">flash_on</i></label><input id="priority-widget-2" type="radio" name="priority" value="2" {{checkedIf priority 2}}>
+                  <label for="priority-widget-3"><i class="material-icons">flash_on</i></label><input id="priority-widget-3" type="radio" name="priority" value="3" {{checkedIf priority 3}}>
+                  <label for="priority-widget-4"><i class="material-icons">flash_on</i></label><input id="priority-widget-4" type="radio" name="priority" value="4" {{checkedIf priority 4}}>
+                  <label for="priority-widget-5"><i class="material-icons">flash_on</i></label><input id="priority-widget-5" type="radio" name="priority" value="5" {{checkedIf priority 5}}>
+              </fieldset>
+              
+    
+              <label for="due">Finish until</label>
+              <input id="due" type="date" name="due" value="{{formatEditDate due}}">
+    
+              <footer class="create-form__footer">
+                <input type="submit" value="{{#if ../editMode}}Update{{else}}Create{{/if}}">
+                <a href="index.html">Cancel</a>
+              </footer>        
+            </section>
+            {{/with}}
+        </div>
       </form>
     </section>
       

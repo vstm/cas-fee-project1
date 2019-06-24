@@ -2,6 +2,10 @@ Handlebars.registerHelper("checkedIf", function(fieldValue, value) {
     return (value === undefined || typeof value === "object" ? fieldValue : (fieldValue === value)) ? "checked" : "";
 });
 
+Handlebars.registerHelper("selectedIf", function(fieldValue, value) {
+    return (value === undefined || typeof value === "object" ? fieldValue : (fieldValue === value)) ? "selected" : "";
+});
+
 Handlebars.registerHelper("formatDate", function(datetime, nullValue) {
     if (!datetime) {
         return nullValue;

@@ -39,7 +39,7 @@
 
           <select name="style">
             {{#each styles}}
-            <option value="{{id}}">{{title}}</option>
+            <option value="{{id}}" {{selectedIf ../style id}}>{{title}}</option>
             {{/each}}
           </select>
           {{/if}}

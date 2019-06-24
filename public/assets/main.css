@@ -1,11 +1,17 @@
 html {
     box-sizing: border-box;
+    --color-background: rgba(0, 0, 0, 0.02);
+    --color-text: #292929;
+    --color-header-background: rgb(216, 252, 209);
+    --color-prio-selected: var(--color-text);
+    --color-prio-unselected: lightgray;
 }
 
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(0, 0, 0, 0.02);
+    background-color: var(--color-background);
+    color: var(--color-text);
 }
 
 main {
@@ -26,7 +32,7 @@ main header {
     align-items: center;
     box-shadow: 0 3px 3px lightgray;
     padding: 0 1em;
-    background-color: rgb(216, 252, 209);
+    background-color: var(--color-header-background);
 }
 
 main header h1 {
@@ -47,11 +53,20 @@ main .todo-list, main .main-area {
     font-size: 1em;
 }
 
+.create-container {
+    display: flex;
+    justify-content: flex-start;    
+}
+
 .create-form {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 30em;
     grid-gap: 1em;
     grid-auto-rows: auto;
+}
+
+.create-form textarea {
+    height: 8em;
 }
 
 .create-form__footer {
@@ -70,11 +85,11 @@ main .todo-list, main .main-area {
 .priority-widget label {
     margin-right: .5em;
     cursor: pointer;
-    color: black;
+    color: var(--color-prio-selected);
 }
 
 .priority-widget>input:checked ~ label {
-    color: lightgray;
+    color: var(--color-prio-unselected);
 }
 
 .todo-list {
@@ -85,6 +100,7 @@ main .todo-list, main .main-area {
 .todo-item {
     margin-top: 1em;
     padding: .5em 1em;
+    border: 1px solid lightgray;
     box-shadow: 3px 3px 3px lightgray;
     display: grid;
     grid-template-columns: auto auto 10em 4fr 5em auto;
@@ -126,10 +142,6 @@ main .todo-list, main .main-area {
 .todo-item__due {
     grid-area: due;
     align-self: center;
-}
-
-.todo-item__due-label {
-    color: #292929;
 }
 
 .todo-item__done-date {
@@ -208,7 +220,7 @@ main .todo-list, main .main-area {
 }
 
 a.add-button {
-    color: rgb(245, 245, 245);
+    color: var(--color-text);
 }
 
 
