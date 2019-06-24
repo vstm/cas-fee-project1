@@ -14,9 +14,14 @@ module.exports = {
     },
     "rules": {
         "no-console": "off",
+        "jsdoc/no-undefined-types": 1,
     },
     "globals": {
         "Handlebars": "readonly",
-        "moment": "readonly"
-    }
+        "moment": "readonly",
+        "__dirname": "readonly",
+    },
+    "plugins": [
+      "jsdoc"
+    ]
 };

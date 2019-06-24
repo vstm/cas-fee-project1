@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "node postinstall.js",
-    "start": "node --experimental-modules bin/www"
+    "start": "node --experimental-modules bin/www",
+    "load-fixtures": "node --experimental-modules load-fixtures.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "eslint": "^5.16.0",
+    "eslint-plugin-jsdoc": "^8.4.5",
     "express-generator": "^4.16.1"
   }
 }
