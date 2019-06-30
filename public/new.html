@@ -16,8 +16,8 @@
 
   <script id="todo-create-template" type="text/x-handlebars-template">
     <header>
-        <h1>Todo APP</h1>
-        <a class="add-button" href="new.html"><i class="material-icons">add_circle</i>New Todo</a>
+        <h1><a href="/">Todo APP</a></h1>
+        <a class="button add-button" href="new.html"><i class="material-icons">add_circle</i>New Todo</a>
     </header>
 
     <section class="main-area">
@@ -46,8 +46,8 @@
               <input id="due" type="date" name="due" value="{{formatEditDate due}}">
     
               <footer class="create-form__footer">
-                <input type="submit" value="{{#if ../editMode}}Update{{else}}Create{{/if}}">
-                <a href="index.html">Cancel</a>
+                <input class="button" type="submit" value="{{#if ../editMode}}Update{{else}}Create{{/if}}">
+                <a class="button" href="index.html">Cancel</a>
               </footer>        
             </section>
             {{/with}}

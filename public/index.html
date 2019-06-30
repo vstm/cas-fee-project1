@@ -15,8 +15,8 @@
     <script id="todo-list-template" type="text/x-handlebars-template">
 
         <header>
-          <h1>Todo APP</h1>
-          <a class="add-button" href="new.html"><i class="material-icons">add_circle</i>New Todo</a>
+          <h1><a href="/">Todo APP</a></h1>
+          <a class="button add-button" href="new.html"><i class="material-icons">add_circle</i>New Todo</a>
         </header>
 
         
@@ -60,7 +60,7 @@
                 {{description}}
               </div>
               <div class="todo-item__edit">
-                  <a href="new.html?edit={{id}}"><i class="material-icons">edit</i></a>
+                  <a class="edit-icon" href="new.html?edit={{id}}"><i class="material-icons">edit</i></a>
               </div>
           </div>
           {{/each}}

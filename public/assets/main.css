@@ -5,6 +5,7 @@ html {
     --color-header-background: rgb(216, 252, 209);
     --color-prio-selected: var(--color-text);
     --color-prio-unselected: lightgray;
+    --color-button: lightskyblue;
 }
 
 body {
@@ -37,6 +38,11 @@ main header {
 
 main header h1 {
     margin: 0;
+}
+
+main header h1 a {
+    color: inherit;
+    text-decoration: none;
 }
 
 main .view-settings {
@@ -209,14 +215,26 @@ main .todo-list, main .main-area {
     display: none;
 }
 
+a.button {
+    text-decoration: none;
+}
+
+.button {
+    display: inline-block;
+    font: inherit;
+    background-color: var(--color-button);
+    border-radius: 2px;
+    padding: .4em .8em;
+    box-shadow: 2px 2px 2px rgb(211, 211, 211);
+    border: none;
+    cursor: pointer;
+    color: inherit;
+}
+
 .add-button {
     display: inline-flex;
     text-decoration: none;
     align-items: center;
-    background-color: lightskyblue;
-    border-radius: 2px;
-    padding: .2em .5em;
-    box-shadow: 2px 2px 2px rgb(211, 211, 211);
 }
 
 a.add-button {
@@ -226,4 +244,8 @@ a.add-button {
 
 .add-button i {
     margin-right: .3em;
+}
+
+a.edit-icon {
+    color: inherit;
 }
