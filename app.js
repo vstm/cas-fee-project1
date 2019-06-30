@@ -17,6 +17,8 @@ const todoDb = new Datastore({filename: dbName, autoload: true})
 const todoStore = new TodoStore(todoDb);
 const todoController  = new TodoController(todoStore);
 
+app.use('/lib', express.static(path.join(__dirname, 'node_modules/handlebars/dist')));
+app.use('/lib', express.static(path.join(__dirname, 'node_modules/moment/min')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.json());
