@@ -11,7 +11,7 @@ export const app = express();
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
-const dbName = path.join(__dirname, 'test.db');
+const dbName = path.join(__dirname, 'data', 'todo.db');
 
 const todoDb = new Datastore({filename: dbName, autoload: true})
 const todoStore = new TodoStore(todoDb);

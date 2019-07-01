@@ -1,0 +1,12 @@
+version: '3'
+services:
+  caddy:
+    environment:
+      ACME_AGREE: "true"
+    image: abiosoft/caddy:1.0.0-no-stats 
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - $HOME/.caddy:/root/.caddy
+    ports:
+      - 80:80
+      - 443:443

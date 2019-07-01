@@ -1,0 +1,3 @@
+*:80, project1.cas-fee.svetsch.ch:443
+proxy / todoapp:3000
+tls stefan.vetsch+tls@gmail.com

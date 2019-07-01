@@ -42,7 +42,7 @@ const fixtures = [
 ];
 
 
-const db = new Datastore({filename: path.join(__dirname, 'test.db'), autoload: true});
+const db = new Datastore({filename: path.join(__dirname, 'data', 'todo.db'), autoload: true});
 
 fixtures.forEach(async (fixture) => {
     await db.insert(Todo.fromJson(fixture));
