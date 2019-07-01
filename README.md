@@ -24,13 +24,11 @@ After that, you can start the porject with
 
     npm start
 
-It will then open a server at http://localhost:3000
+It will then open a server which can be accesed with http://localhost:3000
 
 ## Online demo
 
-You can test it online here: https://project1.cas-fee.svetsch.ch/ - it does not
-have authentication yet and all messages are visible for anyone. Please don't
-write nasty messages :)
+You can test it online here: https://project1.cas-fee.svetsch.ch/ - it does not have authentication yet and all messages are visible for anyone. Please don't write nasty messages :)
 
 ## Project structure
 
@@ -62,7 +60,7 @@ Here I collect some non-technical general points or todos with regards to my pro
 
 ### Learnings
 
-- I not that much experience in structuring CSS code, I don't have a system to organize it,
+- I have not that much experience in structuring CSS code, I don't have a system to organize it,
 - I started early with the "application" code but put of the styling until later. It took a lot of time and I'm not happy with it.
   I tried to mimick the material design guidelines but it doesn't look as smooth as the original. So I think I'll have to
   invest more time thinkering around with the visual design aspects.
