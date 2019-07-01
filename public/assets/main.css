@@ -185,11 +185,6 @@ main .todo-list, main .main-area {
     display: inline-block;
 }
 
-/* .todo-item__done-check,
-.todo-item__edit {
-    margin-top: 1em;
-} */
-
 .view-settings {
     display: flex;
     flex-direction: column;
