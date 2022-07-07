@@ -23,7 +23,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "handlebars": "^4.1.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "morgan": "^1.9.1",
     "nedb": "^1.8.0",
     "nedb-promise": "^2.0.1"
